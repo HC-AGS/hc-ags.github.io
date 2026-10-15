@@ -9,7 +9,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #ffffff;
-      color: #1f2937;
+      color: #000000;
       min-height: 100vh;
     }
     .bg-gradient {
@@ -21,8 +21,8 @@
       filter:blur(120px); opacity:0; z-index:-1;
       animation:float 8s ease-in-out infinite alternate;
     }
-    .glow-1 { top:-200px; left:-100px; background:#3b82f6; }
-    .glow-2 { bottom:-200px; right:-100px; background:#8b5cf6; }
+    .glow-1 { top:-200px; left:-100px; background:#22c55e; }
+    .glow-2 { bottom:-200px; right:-100px; background:#22c55e; }
     @keyframes float { from{transform:translateY(0)} to{transform:translateY(40px)} }
 
     .container {
@@ -40,7 +40,7 @@
       width: 96px; height: 96px;
       border-radius: 50%;
       border: 3px solid #22c55e;
-      box-shadow: 0 0 30px rgba(59,130,246,0.4);
+      box-shadow: 0 0 30px rgba(34,197,94,0.4);
       margin-bottom: 20px;
     }
     .username {
@@ -54,13 +54,13 @@
       margin-bottom: 8px;
     }
     .tagline {
-      color: #6b7280;
+      color: #000000;
       font-size: 1rem;
       letter-spacing: 1px;
     }
     .divider {
       width: 60px; height: 3px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      background: #22c55e;
       margin: 24px auto;
       border-radius: 2px;
     }
@@ -69,7 +69,7 @@
     .section-title {
       font-size: 1.3rem;
       font-weight: 600;
-      color: #2563eb;
+      color: #000000;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
@@ -78,7 +78,7 @@
     .section-title::before {
       content: '';
       width: 4px; height: 20px;
-      background: linear-gradient(#3b82f6, #8b5cf6);
+      background: #22c55e;
       border-radius: 2px;
     }
 
@@ -95,26 +95,26 @@
       border-radius: 12px;
       padding: 20px;
       text-decoration: none;
-      color: #1f2937;
+      color: #000000;
       transition: all 0.25s ease;
       position: relative;
       overflow: hidden;
     }
     .repo-card::before {
       content:''; position:absolute; inset:0;
-      background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
+      background: rgba(34,197,94,0.06);
       opacity:0; transition: opacity 0.3s;
     }
     .repo-card:hover {
       transform: translateY(-3px);
       border-color: #22c55e;
-      box-shadow: 0 8px 30px rgba(59,130,246,0.18);
+      box-shadow: 0 8px 30px rgba(34,197,94,0.18);
     }
     .repo-card:hover::before { opacity:1; }
     .repo-card .repo-name {
       font-size: 1.05rem;
       font-weight: 600;
-      color: #2563eb;
+      color: #000000;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -124,7 +124,7 @@
       font-size: 1.1rem;
     }
     .repo-card .repo-desc {
-      color: #6b7280;
+      color: #000000;
       font-size: 0.88rem;
       line-height: 1.5;
       min-height: 2.6em;
@@ -134,7 +134,7 @@
       gap: 14px;
       margin-top: 12px;
       font-size: 0.78rem;
-      color: #9ca3af;
+      color: #000000;
     }
     .repo-card .tag {
       background: #f3f4f6;
@@ -142,7 +142,7 @@
       border-radius: 20px;
       padding: 2px 10px;
       font-size: 0.75rem;
-      color: #6b7280;
+      color: #000000;
     }
 
     /* Links */
@@ -162,7 +162,7 @@
       background: #f3f4f6;
       border: 1px solid #22c55e;
       border-radius: 20px;
-      color: #1f2937;
+      color: #000000;
       text-decoration: none;
       font-size: 0.9rem;
       transition: all 0.2s;
@@ -170,19 +170,19 @@
     .link-btn:hover {
       background: #e5e7eb;
       border-color: #22c55e;
-      color: #2563eb;
+      color: #000000;
       transform: translateY(-2px);
     }
 
     /* Footer */
     .footer {
       text-align: center;
-      color: #9ca3af;
+      color: #000000;
       font-size: 0.82rem;
       padding-top: 40px;
       border-top: 1px solid #22c55e;
     }
-    .footer a { color: #2563eb; text-decoration: none; }
+    .footer a { color: #000000; text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
 
     @media (max-width:600px) {
