@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HC-AGS · GitHub</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+    }
+    .bg-gradient {
+      position:fixed; inset:0; z-index:-1;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 40%, #0d1117 100%);
+    }
+    .glow {
+      position:fixed; width:600px; height:600px; border-radius:50%;
+      filter:blur(120px); opacity:0.15; z-index:-1;
+      animation:float 8s ease-in-out infinite alternate;
+    }
+    .glow-1 { top:-200px; left:-100px; background:#58a6ff; }
+    .glow-2 { bottom:-200px; right:-100px; background:#bc8cff; }
+    @keyframes float { from{transform:translateY(0)} to{transform:translateY(40px)} }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .avatar {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 3px solid #58a6ff;
+      box-shadow: 0 0 30px rgba(88,166,255,0.4);
+      margin-bottom: 20px;
+    }
+    .username {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #58a6ff, #bc8cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .tagline {
+      color: #8b949e;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, #58a6ff, #bc8cff);
+      margin: 24px auto;
+      border-radius: 2px;
+    }
+
+    /* Section title */
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #58a6ff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      width: 4px; height: 20px;
+      background: linear-gradient(#58a6ff, #bc8cff);
+      border-radius: 2px;
+    }
+
+    /* Repo grid */
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+    .repo-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 20px;
+      text-decoration: none;
+      color: #e6edf3;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .repo-card::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(88,166,255,0.05), rgba(188,140,255,0.05));
+      opacity:0; transition: opacity 0.3s;
+    }
+    .repo-card:hover {
+      transform: translateY(-3px);
+      border-color: #58a6ff;
+      box-shadow: 0 8px 30px rgba(88,166,255,0.15);
+    }
+    .repo-card:hover::before { opacity:1; }
+    .repo-card .repo-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #58a6ff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .repo-card .repo-name .icon {
+      font-size: 1.1rem;
+    }
+    .repo-card .repo-desc {
+      color: #8b949e;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      min-height: 2.6em;
+    }
+    .repo-card .repo-meta {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: #6e7681;
+    }
+    .repo-card .tag {
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      color: #8b949e;
+    }
+
+    /* Links */
+    .links-section {
+      margin-bottom: 60px;
+    }
+    .links-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      color: #e6edf3;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .link-btn:hover {
+      background: #2d333b;
+      border-color: #58a6ff;
+      color: #58a6ff;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #484f58;
+      font-size: 0.82rem;
+      padding-top: 40px;
+      border-top: 1px solid #21262d;
+    }
+    .footer a { color: #58a6ff; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    @media (max-width:600px) {
+      .container { padding: 40px 16px 60px; }
+      .username { font-size:1.7rem; }
+      .repo-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <img
+        class="avatar"
+        src="https://avatars.githubusercontent.com/u/287587294?v=4"
+        alt="HC-AGS avatar"
+        onerror="this.src='https://github.com/HC-AGS'"
+      />
+      <div class="username">HC-AGS</div>
+      <div class="tagline">Welcome to my GitHub Pages 🚀</div>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Repos -->
+    <div class="section-title">项目</div>
+    <div class="repo-grid">
+
+      <a class="repo-card" href="https://github.com/HC-AGS/game" target="_blank" rel="noopener">
+        <div class="repo-name"><span class="icon">🎮</span> game</div>
+        <div class="repo-desc">Game project repository</div>
+        <div class="repo-meta">
+          <span class="tag">Public</span>
+          <span>github.com/HC-AGS/game</span>
+        </div>
+      </a>
+
+      <a class="repo-card" href="https://github.com/HC-AGS/google-dino" target="_blank" rel="noopener">
+        <div class="repo-name"><span class="icon">🦖</span> google-dino</div>
+        <div class="repo-desc">Chrome 内置恐龙游戏复刻版</div>
+        <div class="repo-meta">
+          <span class="tag">Public</span>
+          <span>github.com/HC-AGS/google-dino</span>
+        </div>
+      </a>
+
+      <a class="repo-card" href="https://github.com/HC-AGS/hc-novel" target="_blank" rel="noopener">
+        <div class="repo-name"><span class="icon">📖</span> hc-novel</div>
+        <div class="repo-desc">Novel project repository</div>
+        <div class="repo-meta">
+          <span class="tag">Public</span>
+          <span>github.com/HC-AGS/hc-novel</span>
+        </div>
+      </a>
+
+      <a class="repo-card" href="https://github.com/HC-AGS/novel_html" target="_blank" rel="noopener">
+        <div class="repo-name"><span class="icon">📑</span> novel_html</div>
+        <div class="repo-desc">Novel HTML reader / display project</div>
+        <div class="repo-meta">
+          <span class="tag">Public</span>
+          <span>github.com/HC-AGS/novel_html</span>
+        </div>
+      </a>
+
+      <a class="repo-card" href="https://github.com/HC-AGS/three-kingdoms-kill" target="_blank" rel="noopener">
+        <div class="repo-name"><span class="icon">⚔️</span> three-kingdoms-kill</div>
+        <div class="repo-desc">三国杀游戏 / 相关项目</div>
+        <div class="repo-meta">
+          <span class="tag">Public</span>
+          <span>github.com/HC-AGS/three-kingdoms-kill</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Quick Links -->
+    <div class="links-section">
+      <div class="section-title">快速入口</div>
+      <div class="links-grid">
+        <a class="link-btn" href="https://github.com/HC-AGS" target="_blank" rel="noopener">🏠 主页</a>
+        <a class="link-btn" href="https://github.com/HC-AGS?tab=repositories" target="_blank" rel="noopener">📦 全部仓库</a>
+        <a class="link-btn" href="https://github.com/HC-AGS?tab=followers" target="_blank" rel="noopener">👥 关注者</a>
+        <a class="link-btn" href="https://github.com/HC-AGS/hc-ags.github.io" target="_blank" rel="noopener">⚙️ 本站仓库</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      Built with ❤️ · Powered by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> · © 2026 HC-AGS
+    </div>
+
+  </div>
+</body>
+</html>
